@@ -1,0 +1,14 @@
+--extra-index-url https://download.pytorch.org/whl/cu128
+# Versionen, mit denen die Ergebnisse in results/ erzeugt wurden (Python 3.14, Windows, CUDA 12.8)
+torch==2.11.0+cu128
+transformers==5.23.0
+datasets==5.2.0
+huggingface_hub==2.4.0
+librosa==1.0.1
+soundfile==0.14.0
+numpy==2.5.5
+pandas==3.1.1
+scipy==1.18.1
+matplotlib==3.11.2
+tqdm==4.70.1
+ipykernel==7.4.0
