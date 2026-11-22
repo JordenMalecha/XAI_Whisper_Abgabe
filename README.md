@@ -1,3 +1,5 @@
+Falls nicht neu berechnet werden soll, gibt es auf dem Repo einen Ordner results, welcher wegen seiner Dateigröße nicht in der Zip enthalten ist. In diesem Ordner liegt eine .pkl Datei.
+
 **Autor(en):** Jorden Malecha (2922538, inf24040@lehre.dhbw-stuttgart.de)
 **Repository:** https://github.com/JordenMalecha/XAI_Whisper_Abgabe
 **Datensatz:** [gilkeyio/librispeech-alignments](https://huggingface.co/datasets/gilkeyio/librispeech-alignments) (LibriSpeech test-clean + MFA-Alignments; Original: [OpenSLR 12](https://www.openslr.org/12)). Wird vom Notebook automatisch gestreamt, kein manueller Download nötig.
@@ -63,7 +65,7 @@ python -m venv .venv
 `requirements.txt` pinnt alle Versionen, mit denen die Ergebnisse erzeugt wurden (PyTorch 2.11.0+cu128, Transformers 5.23.0, Datasets 5.2.0 u. a.). Danach im Notebook den Kernel der `.venv` wählen und von oben ausführen.
 
 * **Vollständiger Lauf:** 100 Äußerungen ≤ 15 s für die Lokalisierung, davon 25 für Deletion und Ablation und 3 für den IG-Konvergenzcheck. Rechenzeit auf der GTX 1660 SUPER: 18,7 Stunden, überwiegend für Integrated Gradients mit 256 Stützstellen (ca. 150 s pro Äußerung bei tiny, ca. 320 s bei base).
-* **Ergebnis-Cache:** Der Lauf speichert alle Ergebnisse zusammen mit der Konfiguration in `results/cache_res.pkl`. Mit `LOAD_CACHED = True` (Standard) lädt das Notebook diesen Cache, sofern `CFG` identisch ist; alle Auswertungen laufen dann in Sekunden. Bei geänderter `CFG` wird neu gerechnet. Der Cache ist im Repository unter results/cache_res.pk1, das Notebook läuft damit ohne Neuberechnungen, falls neu berechnet werden soll diesen Ordner löschen.
+* **Ergebnis-Cache:** Der Lauf speichert alle Ergebnisse zusammen mit der Konfiguration in `results/cache_res.pkl`. Mit `LOAD_CACHED = True` (Standard) lädt das Notebook diesen Cache, sofern `CFG` identisch ist; alle Auswertungen laufen dann in Sekunden. Bei geänderter `CFG` wird neu gerechnet. Der Cache ist im Repository unter results/cache_res.pkl, das Notebook läuft damit ohne Neuberechnungen, falls neu berechnet werden soll diesen Ordner löschen.
 * **Zwischenstand:** Nach jedem Modell wird ein Zwischenstand gespeichert (`results/cache_part_*.pkl`). Bricht der Lauf bei base ab, wird tiny beim nächsten Start nicht neu gerechnet.
 * **Feste Revisionen:** Datensatz und Modelle werden in einer festen Hugging-Face-Revision geladen (`DATASET`, `MODEL_REVISIONS` in der Setup-Zelle).
 * **Probelauf:** Umgebungsvariable `WHISPER_XAI_QUICK=1` setzen (10 Äußerungen, 3 für Deletion/Ablation, weniger IG-Schritte). Die Ausgaben landen in `results_quick/` und überschreiben die Hauptergebnisse nicht.
